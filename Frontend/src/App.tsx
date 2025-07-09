@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Index from './pages/index';
 import IndexThree from './pages/index/index-three';
@@ -56,8 +57,19 @@ import CreateAccount from './pages/admin/create-account';
 import EditAgent from './pages/agents/edit-agent';
 import Faq from './pages/faq';
 import SubmitPropertyDashboard from './pages/admin/submit-property-dashboard';
+import PrivacyContent from './pages/Privacy/PrivacyContent';
+import PrivacySidebar from './pages/Privacy/PrivacySidebar';
+import PrivacyPage from './pages/Privacy/PrivacyPage';
+
 
 function App() {
+  const [activeSection, setActiveSection] = useState("privacy"); 
+
+  const sections = [
+    { id: "privacy", title: "Privacy Policy" },
+    { id: "terms", title: "Terms & Conditions" },
+  ];
+
   return (
     <>
       <Routes>
@@ -125,6 +137,13 @@ function App() {
         <Route path='/faq' element={<Faq/>}/>
         <Route path='/place-search' element={<HalfMapTwo/>}/>
         <Route path='/submit-property-dashboard' element={<SubmitPropertyDashboard/>}/>
+        <Route path='/privacyContent' element={<PrivacyContent  activeSection="PrivacyContent"/>}/>
+        <Route path='/privacyPage' element={<PrivacyPage />}/>
+        <Route path='/PrivacySidebar' element={<PrivacySidebar sections={sections}
+            activeSection={activeSection}
+            setActiveSection={setActiveSection} />}/>
+        
+        
       </Routes>
       <ScrollToTop/>
     </>
