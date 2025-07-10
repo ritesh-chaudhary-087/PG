@@ -103,55 +103,16 @@ export default function Navbar({transparent}:{transparent:any}) {
                         <span className="nav-menus-wrapper-close-button" onClick={()=>setIsToggle(!toggle)}>✕</span>
                         <ul className="nav-menu">
                         
-                            <li className={`${['/','/home-2','/home-3','/home-4','/home-5','/home-6','/home-7','/home-8','/home-8','/home-9','/home-10','/home-11','/video','/map'].includes(current) ? 'active' : ''} ${activeMenu['home']?.main ? 'show' : ''}`} onMouseEnter={() => handleMouseEnter('home')} onMouseLeave={() => handleMouseLeave('home')}><Link to="#">Home<FiChevronDown className="submenu-indicator"/></Link>
-                                <ul className="nav-dropdown nav-submenu" style={{display: activeMenu['home']?.main ? 'block' : 'none', pointerEvents: activeMenu['home']?.main ? 'auto' : 'none',}}>
-                                    <li><Link className={current === '/' ? 'active' : ''} to="/" >Home Layout 1</Link></li>
-                                    <li><Link to="/home-2" className={current === '/home-2' ? 'active' : ''}>Home Layout 2</Link></li>
-                                    <li><Link to="/home-3" className={current === '/home-3' ? 'active' : ''}>Home Layout 3</Link></li>
-                                    <li><Link to="/home-4" className={current === '/home-4' ? 'active' : ''}>Home Layout 4</Link></li>
-                                    <li><Link to="/home-5" className={current === '/home-5' ? 'active' : ''}>Home Layout 5</Link></li>
-                                    <li><Link to="/home-6" className={current === '/home-6' ? 'active' : ''}>Home Layout 6</Link></li>
-                                    <li><Link to="/home-7" className={current === '/home-7' ? 'active' : ''}>Home Layout 7</Link></li>
-                                    <li><Link to="/home-8" className={current === '/home-8' ? 'active' : ''}>Home Layout 8</Link></li>
-                                    <li><Link to="/home-9" className={current === '/home-9' ? 'active' : ''}>Home Layout 9</Link></li>
-                                    <li><Link to="/home-10" className={current === '/home-10' ? 'active' : ''}>Home Layout 10</Link></li>
-                                    <li><Link to="/home-11" className={current === '/home-11' ? 'active' : ''}>Home Layout 11</Link></li>
-                                    <li><Link to="/video" className={current === '/video' ? 'active' : ''}>Video Home</Link></li>
-                                    <li><Link to="/map" className={current === '/map' ? 'active' : ''}>Map Home Layout</Link></li>
-                                </ul>
+                            <li className={`${['/'].includes(current) ? 'active' : ''} ${activeMenu['home']?.main ? 'show' : ''}`} onMouseEnter={() => handleMouseEnter('home')} onMouseLeave={() => handleMouseLeave('home')}><Link to="/">Home</Link> 
+                            </li>
+
+                             <li className={`${['/AboutPage'].includes(current) ? 'active' : ''} ${activeMenu['AboutPage']?.main ? 'show' : ''}`} onMouseEnter={() => handleMouseEnter('AboutPage')} onMouseLeave={() => handleMouseLeave('AboutPage')}><Link to="/aboutpage">About Us</Link> 
                             </li>
                             
-                            <li className={` ${['/list-layout-one','/list-layout-two','/list-layout-three','/list-layout-with-map','/list-layout-full','/list-layout-one','/list-layout-two','/list-layout-three','/list-layout-with-map','/list-layout-full','/grid-layout-with-sidebar','/classical-layout-with-sidebar','/grid-layout-with-map','/grid','/classical-property','/list-layout-with-map','/grid-layout-with-map','/classical-layout-with-map','/half-map','/half-map-2'].includes(current) ? 'active' : ''} ${activeMenu['listing']?.main ? 'show' : ''}`} onMouseEnter={() => handleMouseEnter('listing')} onMouseLeave={() => handleMouseLeave('listing')}><Link to="#">Listings<FiChevronDown className="submenu-indicator"/></Link>
-                                <ul className="nav-dropdown nav-submenu" style={{display: activeMenu['listing']?.main ? 'block' : 'none', pointerEvents: activeMenu['listing']?.main ? 'auto' : 'none',}}>
-                                    <li className={`${['/list-layout-one','/list-layout-two','/list-layout-three','/list-layout-with-map','/list-layout-full'].includes(current) ? 'active' : ''}`} onMouseEnter={() => handleMouseEnter('listing', 'list-layout')} onMouseLeave={() => handleMouseLeave('listing', 'list-layout')}><Link to="#">List Layout<FiChevronDown className="submenu-indicator"/></Link>
-                                        <ul className="nav-dropdown nav-submenu" style={{display: activeMenu['listing']?.['list-layout'] ? 'block' : 'none',pointerEvents: activeMenu['listing']?.['list-layout'] ? 'auto' : 'none',}}>
-                                            <li><Link to="/list-layout-one" className={current === '/list-layout-one' ? 'active' : ''}>List Layout Simple</Link></li>
-                                            <li><Link to="/list-layout-two" className={current === '/list-layout-two' ? 'active' : ''}>List Layout Modern</Link></li>                                    
-                                            <li><Link to="/list-layout-three" className={current === '/list-layout-three' ? 'active' : ''}>List Layout Advance</Link></li>                                    
-                                            <li><Link to="/list-layout-with-map" className={current === '/list-layout-with-map' ? 'active' : ''}>With Map</Link></li>                                    
-                                            <li><Link to="/list-layout-full" className={current === '/list-layout-full' ? 'active' : ''}>Full Width</Link></li>
-                                        </ul>
-                                    </li>
-                                    <li className={`${['/grid-layout-with-sidebar','/classical-layout-with-sidebar','/grid-layout-with-map','/grid','/classical-property'].includes(current) ? 'active' : ''}`} onMouseEnter={() => handleMouseEnter('listing', 'grid-layout')} onMouseLeave={() => handleMouseLeave('listing', 'grid-layout')}><Link to="#">Grid Layout<FiChevronDown className="submenu-indicator"/></Link>
-                                        <ul className="nav-dropdown nav-submenu" style={{display: activeMenu['listing']?.['grid-layout'] ? 'block' : 'none',pointerEvents: activeMenu['listing']?.['grid-layout'] ? 'auto' : 'none',}}>
-                                            <li><Link to="/grid-layout-with-sidebar" className={current === '/grid-layout-with-sidebar' ? 'active' : ''}>With Sidebar</Link></li>                                    
-                                            <li><Link to="/classical-layout-with-sidebar" className={current === '/classical-layout-with-sidebar' ? 'active' : ''}>Classical With Sidebar</Link></li>                                    
-                                            <li><Link to="/grid-layout-with-map" className={current === '/grid-layout-with-map' ? 'active' : ''}>With Map</Link></li>                                    
-                                            <li><Link to="/grid" className={current === '/grid' ? 'active' : ''}>Full Width</Link></li>
-                                            <li><Link to="/classical-property" className={current === '/classical-property' ? 'active' : ''}>Classical Full Width</Link></li>	 
-                                        </ul>
-                                    </li>
-                                    <li className={`${['/list-layout-with-map','/grid-layout-with-map','/classical-layout-with-map','/half-map','/half-map-2'].includes(current) ? 'active' : ''}`} onMouseEnter={() => handleMouseEnter('listing', 'map-layout')} onMouseLeave={() => handleMouseLeave('listing', 'map-layout')}><Link to="#">With Map Property<FiChevronDown className="submenu-indicator"/></Link>
-                                        <ul className="nav-dropdown nav-submenu" style={{display: activeMenu['listing']?.['map-layout'] ? 'block' : 'none',pointerEvents: activeMenu['listing']?.['map-layout'] ? 'auto' : 'none',}}>
-                                            <li><Link to="/list-layout-with-map" className={current === '/list-layout-with-map' ? 'active' : ''}>List With Map</Link></li>                                    
-                                            <li><Link to="/grid-layout-with-map" className={current === '/grid-layout-with-map' ? 'active' : ''}>Grid With Map</Link></li>                                    
-                                            <li><Link to="/classical-layout-with-map" className={current === '/classical-layout-with-map' ? 'active' : ''}>Classical With Map</Link></li>                                    
-                                            <li><Link to="/place-search" className={current === '/place-search' ? 'active' : ''}>Place Search</Link></li>
-                                            <li><Link to="/half-map" className={current === '/half-map' ? 'active' : ''}>Half Map Search</Link></li>
-                                            <li><Link to="/half-map-2" className={current === '/half-map-2' ? 'active' : ''}>Half Map Search 02</Link></li>												
-                                        </ul>
-                                    </li>
-                                </ul>
+                            <li className={` ${['/grid-layout-with-sidebar'].includes(current) ? 'active' : ''} ${activeMenu['grid-layout-with-sidebar']?.main ? 'show' : ''}`} onMouseEnter={() => handleMouseEnter('grid-layout-with-sidebar')} onMouseLeave={() => handleMouseLeave('grid-layout-with-sidebar')}><Link to="grid-layout-with-sidebar">Listings</Link>  
+                            </li>
+
+                             <li className={` ${['/Pricing'].includes(current) ? 'active' : ''} ${activeMenu['Pricing']?.main ? 'show' : ''}`} onMouseEnter={() => handleMouseEnter('Pricing')} onMouseLeave={() => handleMouseLeave('Pricing')}><Link to="Pricing">Pricing</Link>  
                             </li>
                             
                             <li className={`${['/single-property-1','/single-property-2','/single-property-3','/single-property-4','/agents','/agent-page','/add-agent','/edit-agent','/agencies','/agency-page','/dashboard','/create-account','/my-profile','/payment','/checkout','/my-property','/bookmark-list','change-password','/compare-property','/submit-property'].includes(current)?'active':''} ${activeMenu['feature']?.main ? 'show' : ''}`} onMouseEnter={() => handleMouseEnter('feature')} onMouseLeave={() => handleMouseLeave('feature')}><Link to="#">Features<FiChevronDown className="submenu-indicator"/></Link>
@@ -229,12 +190,12 @@ export default function Navbar({transparent}:{transparent:any}) {
                                 </Link>
                             </li>
                             <li className="add-listing">
-                                <Link to="/submit-property" className="bg-primary">
+                                <Link to="/PropertyListing" className="bg-primary">
                                     <img src={loginImg} alt="" className='me-1'/>Post Property
                                 </Link>
                             </li>
                             <li>
-                                <Link to="#" className="text-primary" onClick={()=>setProperty(!property)}>
+                                <Link to="/PropertyListing" className="text-primary" onClick={()=>setProperty(!property)}>
                                     <span className="svg-icon svg-icon-2hx">
                                         <svg width="24" height="24" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <rect y="6" width="16" height="3" rx="1.5" fill="currentColor"/>

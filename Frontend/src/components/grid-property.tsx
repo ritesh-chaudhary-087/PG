@@ -94,10 +94,8 @@ export default function GridProperty({item,border}:{item:any, border:any}) {
                       <h6 className="listing-card-info-price m-0">{item.value}</h6>
                   </div>
                   <div className="footer-flex">
-                      <Link to={`/single-property-1/${item.id}`} className="prt-view">
-                          <img src={send} alt="" />
-                      </Link>
-                  </div>
+                                           <Link to="/single-property-1" className="btn btn-md btn-primary fw-medium">View Detail</Link>
+                                       </div>
               </div>
           
           </div>

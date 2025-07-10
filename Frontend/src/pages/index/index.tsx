@@ -9,7 +9,7 @@ import Navbar from '../../components/navbar/navbar'
 import HowItsWork from '../../components/how-its-work';
 import BestLoctionOne from '../../components/best-loction-one';
 import ClientOne from '../../components/client-one';
-import PricingOne from '../../components/pricing-one';
+import PricingOne from '../../components/Pricing';
 import FooterTop from '../../components/footer-top';
 import Footer from '../../components/footer';
 import GridPropertyOne from '../../components/grid-property-one';

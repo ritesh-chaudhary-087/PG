@@ -252,6 +252,19 @@ export const propertyData = [
         sqft:'1800 SQFT',
         value:'$10,50000'
     },
+     {
+        id:10,
+        image:[p7,p8,p12],
+        tag:['SuperAgent'],
+        tag2:'For Sell',
+        type:'Building',
+        name:'Red Tiny Hearst Castle',
+        loction:'210 Zirak Road, Canada',
+        size:'3BHK',
+        beds:'3 Beds',
+        sqft:'1800 SQFT',
+        value:'$10,50000'
+    },
 ]
 
 export const workData = [
