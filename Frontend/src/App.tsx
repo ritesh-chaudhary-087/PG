@@ -60,7 +60,17 @@ import SubmitPropertyDashboard from './pages/admin/submit-property-dashboard';
 import PrivacyContent from './pages/Privacy/PrivacyContent';
 import PrivacySidebar from './pages/Privacy/PrivacySidebar';
 import PrivacyPage from './pages/Privacy/PrivacyPage';
-
+import AboutContent from './pages/about/AboutContent';
+import AboutPage from './pages/about/AboutPage';
+import AboutSidebar from './pages/about/AboutSidebar';
+import FaqAccordion from './pages/about/FaqAccordion';
+import OwnerSection from './pages/about/OwnerSection';
+import Amenities from './pages/PropertyListing/Amenities';
+import Gallery from './pages/PropertyListing/Gallery';
+import Schedule from './pages/PropertyListing/Schedule';
+import PropertyListing from './pages/PropertyListing/PropertyListing';
+import LocalityDetails from './pages/PropertyListing/LocalityDetails';
+import RentalDetails from './pages/PropertyListing/RentalDetails';
 
 function App() {
   const [activeSection, setActiveSection] = useState("privacy"); 
@@ -142,8 +152,20 @@ function App() {
         <Route path='/PrivacySidebar' element={<PrivacySidebar sections={sections}
             activeSection={activeSection}
             setActiveSection={setActiveSection} />}/>
-        
-        
+        <Route path='/aboutContent' element={<AboutContent activeSection="AboutContent"/>}/>
+        <Route path='/aboutPage' element={<AboutPage />}/>
+        <Route path='/ownerSection' element={<OwnerSection/>}/>
+        <Route path='/faqAccordion' element={<FaqAccordion/>}/>
+        <Route path='/aboutSidebar' element={<AboutSidebar sections={sections}
+            activeSection={activeSection}
+            setActiveSection={setActiveSection} />}/>
+        <Route path="PropertyListing" element={<PropertyListing/>}/>
+        <Route path="LocalityDetails" element={<LocalityDetails/>}/>
+        <Route path="RentalDetails" element={<RentalDetails/>}/>
+        <Route path="Amenities" element={<Amenities/>}/>
+        <Route path="Gallery" element={<Gallery/>}/>
+        <Route path="Schedule" element={<Schedule/>}/>
+
       </Routes>
       <ScrollToTop/>
     </>

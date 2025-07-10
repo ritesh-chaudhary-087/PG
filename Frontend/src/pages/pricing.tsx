@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Navbar from '../components/navbar/navbar'
-import PricingOne from '../components/pricing-one'
+import PricingOne from '../components/Pricing'
 import FooterTop from '../components/footer-top'
 import Footer from '../components/footer'
 

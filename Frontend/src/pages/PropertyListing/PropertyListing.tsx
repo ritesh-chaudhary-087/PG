@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import PropertySidebar from '../PropertyListing/PropertySidebar'
+import PropertySidebar from './PropertySidebar'
 import Footer from '../../components/footer'
 import Navbar from '../../components/navbar/navbar'
 
-export default function PropertyD() {
+export default function PropertyListing() {
   const [show, setShow] = useState<boolean>(false)
 
   const [formData, setFormData] = useState({
@@ -52,7 +52,7 @@ export default function PropertyD() {
       </div>
 
       <section className="bg-light">
-        <div className="container-fluid">
+        <div className="container">
           <div className="row">
             <div className="col-lg-12 col-md-12">
               <div className="filter_search_opt">

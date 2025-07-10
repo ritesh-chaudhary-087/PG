@@ -16,7 +16,7 @@ export default function ListLayoutOne() {
     <>
         <Navbar transparent={false}/>
         <section className="gray-simple">
-            <div className="container">
+            <div className="container-fluid">
                 <div className="row m-0">
                     <FilterTop/>
                 </div>
@@ -34,21 +34,21 @@ export default function ListLayoutOne() {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-lg-4 col-md-12 col-sm-12">
+                    <div className="col-lg-3 col-md-12 col-sm-12">
                         <SideFilter show={show} setShow={setShow}/>
                     </div>
-                    <div className="col-lg-8 col-md-12 list-layout">
+                    <div className="col-lg-9 col-md-12 list-layout">
                         <div className="row justify-content-center g-4">
                             {propertyData.map((item,index)=>{
                                 return(
-                                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12" key={index}>
+                                    <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12" key={index}>
                                         <ListProperty item={item}/>
                                     </div>
                                 )
                             })}
                         </div>
                         <div className="row">
-                            <div className="col-lg-12 col-md-12 col-sm-12">
+                            <div className="col-lg-6 col-md-12 col-sm-12">
                                 <ul className="pagination p-center">
                                     <li className="page-item">
                                         <Link className="page-link" to="#" aria-label="Previous"><i className="fa-solid fa-arrow-left-long"></i><span className="sr-only">Previous</span></Link>

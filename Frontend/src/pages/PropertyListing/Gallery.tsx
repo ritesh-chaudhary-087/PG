@@ -62,7 +62,7 @@ export default function Gallery() {
       </div>
 
       <section className="bg-light">
-        <div className="container-fluid">
+        <div className="container">
           <div className="row">
             <div className="col-lg-3 col-md-12">
               <PropertySidebar show={show} setShow={setShow} />

@@ -23,8 +23,8 @@ export default function GridLayoutWithSidebar() {
     <>
     <Navbar transparent={false}/>   
 
-    <div className="page-title">
-        <div className="container">
+    {/* <div className="page-title">
+        <div className="container-fluid">
             <div className="row">
                 <div className="col-lg-12 col-md-12">
                     <h2 className="ipt-title">Grid Layout With Sidebar</h2>
@@ -32,10 +32,10 @@ export default function GridLayoutWithSidebar() {
                 </div>
             </div>
         </div>
-    </div>
+    </div> */}
 
     <section className="gray-simple">
-        <div className="container">
+        <div className="container-fluid">
             <div className="row">
                 <div className="col-lg-12 col-md-12">
                     <div className="filter_search_opt">
@@ -52,11 +52,11 @@ export default function GridLayoutWithSidebar() {
             
             <div className="row">
             
-                <div className="col-lg-4 col-md-12 col-sm-12">
+                <div className="col-lg-3 col-md-12 col-sm-12">
                     <SideFilter show={show} setShow={setShow}/>
                 </div>
                 
-                <div className="col-lg-8 col-md-12 col-sm-12">
+                <div className="col-lg-9 col-md-12 col-sm-12">
                     
                     <div className="row justify-content-center">
                         <div className="col-lg-12 col-md-12">
@@ -98,9 +98,9 @@ export default function GridLayoutWithSidebar() {
                     </div>
                     
                     <div className="row justify-content-center g-4">
-                        {propertyData.slice(0,6).map((item,index)=>{
+                        {propertyData.slice(0,22).map((item,index)=>{
                             return(
-                                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12" key={index}>
+                                <div className="col-xl-4 col-lg-4 col-md-6 col-sm-12" key={index}>
                                     <GridProperty item={item} border={false}/>
                                 </div>
                             )

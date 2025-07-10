@@ -13,7 +13,7 @@ export default function FooterTop({bg}:{bg:any}) {
                                 <h3>Find Property</h3>
                                 <span>Select from thousands of options, without brokerage.</span>
                             </div>
-                            <Link to="#" className="btn btn-call-to-act">Find Now</Link>
+                            <Link to="/grid-layout-with-sidebar" className="btn btn-call-to-act">Find Now</Link>
                         </div>
                     </div>
 
@@ -27,7 +27,7 @@ export default function FooterTop({bg}:{bg:any}) {
                                 <h3 >List Your Property</h3>
                                 <span >Add Property For Free. Without any brokerage.</span>
                             </div>
-                              <Link to="#" className="btn m-auto btn-call-to-act">Free Posting</Link>
+                              <Link to="/PropertyListing" className="btn m-auto btn-call-to-act">Free Posting</Link>
                         </div>
                         
                     </div>

@@ -31,17 +31,17 @@ export default function PropertySidebar({ show, setShow }: SidebarProps) {
           <div className="d-navigation">
             <ul>
               <li className={current === "/propertyD" ? "active" : ""}>
-                <Link to="/propertyD">
+                <Link to="/propertyListing">
                  <i className="fa-solid fa-house"></i> Property Details
                 </Link>
               </li>
               <li className={current === "/localityD" ? "active" : ""}>
-                <Link to="/localityD">
+                <Link to="/localityDetails">
                  <i className="fa-solid fa-location-dot"></i> Locality Details
                 </Link>
               </li>
               <li className={current === "/rentalD" ? "active" : ""}>
-                <Link to="/rentalD">
+                <Link to="/rentalDetails">
                   <i className="fa-solid fa-building-circle-check"></i> Rental Details
                 </Link>
               </li>

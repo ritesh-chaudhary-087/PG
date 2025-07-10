@@ -17,7 +17,7 @@ interface RentalFormData {
   description: string;
 }
 
-export default function RentalD() {
+export default function RentalDetails() {
   const [show, setShow] = useState(false);
 
   const [formData, setFormData] = useState<RentalFormData>({
@@ -92,7 +92,7 @@ export default function RentalD() {
       </div>
 
       <section className="bg-light">
-        <div className="container-fluid">
+        <div className="container">
           <div className="row">
             <div className="col-lg-12 col-md-12">
               <div className="filter_search_opt">

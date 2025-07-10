@@ -4,7 +4,7 @@ import PropertySidebar from '../PropertyListing/PropertySidebar'
 import Navbar from '../../components/navbar/navbar'
 import Footer from '../../components/footer'
 
-export default function LocalityD() {
+export default function LocalityDetails() {
   const [show, setShow] = useState(false)
 
   const [formData, setFormData] = useState({
@@ -49,7 +49,7 @@ export default function LocalityD() {
       </div>
 
       <section className="bg-light">
-        <div className="container-fluid">
+        <div className="container">
           <div className="row">
             <div className="col-lg-12 col-md-12">
               <div className="filter_search_opt">

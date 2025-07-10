@@ -6,7 +6,7 @@ import HowItsWork from '../../components/how-its-work';
 import GridPropertyOne from '../../components/grid-property-one';
 import BestLoctionOne from '../../components/best-loction-one';
 import ClientOne from '../../components/client-one';
-import PricingOne from '../../components/pricing-one';
+import PricingOne from '../../components/Pricing';
 import FooterTop from '../../components/footer-top';
 import Footer from '../../components/footer';
 import HomeMap from '../../components/home-map';

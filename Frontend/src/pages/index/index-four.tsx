@@ -8,7 +8,7 @@ import PropertySliderTwo from '../../components/property-slider-two';
 import TopPlaceOne from '../../components/top-place-one';
 import TeamSlider from '../../components/team-slider';
 import ClientOne from '../../components/client-one';
-import PricingOne from '../../components/pricing-one';
+
 import FooterTop from '../../components/footer-top';
 import Footer from '../../components/footer';
 import FormTwo from '../../components/form-two';
@@ -137,7 +137,7 @@ export default function IndexFour() {
                         </div>
                     </div>
                 </div>
-                <PricingOne/>
+               
             </div>	
         </section>
 
