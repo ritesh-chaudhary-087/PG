@@ -9,7 +9,7 @@ import '../../../node_modules/rc-slider/assets/index.css'
 import FullNavbar from '../../components/navbar/full-navbar'
 import ListPropertyFour from '../../components/list-property-four'
 import { propertyData } from '../../data/data'
-import ScrollToTop from '../../components/scroll-to-top';
+
 
 export default function HalfMap() {
     const [range, setRange] = useState<number[]>([20, 80]); 

@@ -12,7 +12,7 @@ export default function PricingOne() {
                 <div className="col-xl-4 col-lg-4 col-md-4" key={index}>
                     <div className="pricing-wrap py-3 px-3">
                         <div className={`pricing-header ${item.bg}`}>
-                            <h4 className="pr-value text-light"><sup className="text-light opacity-75">$</sup>{item.value}</h4>
+                            <h4 className="pr-value text-light"><sup className="text-light opacity-75">₹</sup>{item.value}</h4>
                             <h4 className={`pr-title ${item.titleText}`}>{item.title}</h4>
                         </div>
                         <div className="pricing-body px-2">
@@ -25,7 +25,7 @@ export default function PricingOne() {
                             </ul>
                         </div>
                         <div className="pricing-bottom mt-5 mb-1 px-2">
-                            <Link to="#" className={item.btn}>Choose Plan</Link>
+                            <Link to="/checkout" className={item.btn}>Choose Plan</Link>
                         </div>
                     </div>
                 </div>

@@ -373,7 +373,7 @@ export const pricingData = [
     {
         value:99,
         title:'Basic Package',
-        feature:['5+ Listings','Contact With Agent','3 Month Validity','7x24 Fully Support','50GB Space'],
+        feature:['3 Listings','Contact With Agent','3 Month Validity','7x24 Fully Support','50GB Space'],
         btn:'btn btn-light-primary rounded full-width',
         bg:'bg-dark',
         titleText:'text-info'
@@ -389,7 +389,7 @@ export const pricingData = [
     {
         value:999,
         title:'STANDARD PACKAGE',
-        feature:['5+ Listings','Contact With Agent','3 Month Validity','7x24 Fully Support','50GB Space'],
+        feature:['10+ Listings','Contact With Agent','3 Month Validity','7x24 Fully Support','50GB Space'],
         btn:'btn btn-light-primary rounded full-width',
         bg:'bg-dark',
         titleText:'text-info'

@@ -9811,6 +9811,8 @@ ul.shorting_grid li a span {
     border-radius: 0.5rem;
     overflow: hidden;
     background: #ffffff;
+    box-shadow: 2px 2px 5px 2px #eaf2f9;
+        border: 1px solid #eaf2f9;
 }
 
 .property-listing.list_view .listing-img-wrapper {

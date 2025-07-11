@@ -7,6 +7,9 @@ import './assets/css/colors.css'
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 
+// main.jsx or index.js
+document.documentElement.classList.add("lenis", "lenis-smooth");
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

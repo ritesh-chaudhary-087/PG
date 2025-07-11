@@ -34,7 +34,7 @@ export default function GridLayoutWithSidebar() {
         </div>
     </div> */}
 
-    <section className="gray-simple">
+    <section className="white">
         <div className="container-fluid">
             <div className="row">
                 <div className="col-lg-12 col-md-12">
@@ -66,9 +66,9 @@ export default function GridLayoutWithSidebar() {
                                 </div>
                                 <div className="item-shorting-box-right">
                                     <div className="shorting-by">
-                                        <Select options={shorty}  className="form-control" placeholder="Show All"/>
+                                        <Select options={shorty}  className="form-control" placeholder="Short by"/>
                                     </div>
-                                    <ul className="shorting-list">
+                                    {/* <ul className="shorting-list">
                                         <li>
                                             <Link to="/grid-layout-with-sidebar" className="active w-12 h-12">
                                                 <span className="svg-icon text-seegreen svg-icon-2hx">
@@ -91,16 +91,16 @@ export default function GridLayoutWithSidebar() {
                                                 </span>
                                             </Link>
                                         </li>
-                                    </ul>
+                                    </ul> */}
                                 </div>
                             </div>
                         </div>
                     </div>
                     
                     <div className="row justify-content-center g-4">
-                        {propertyData.slice(0,22).map((item,index)=>{
+                        {propertyData.slice(0,24).map((item,index)=>{
                             return(
-                                <div className="col-xl-4 col-lg-4 col-md-6 col-sm-12" key={index}>
+                                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12" key={index}>
                                     <GridProperty item={item} border={false}/>
                                 </div>
                             )
@@ -108,7 +108,12 @@ export default function GridLayoutWithSidebar() {
                         
                     </div>
                     
-                    <div className="row">
+                    
+            
+                </div>
+                
+            </div>
+            <div className="row">
                         <div className="col-lg-12 col-md-12 col-sm-12">
                             <ul className="pagination p-center">
                                 <li className="page-item">
@@ -117,9 +122,9 @@ export default function GridLayoutWithSidebar() {
                                     <span className="sr-only">Previous</span>
                                     </Link>
                                 </li>
-                                <li className="page-item"><Link className="page-link" to="#">1</Link></li>
+                                <li className="page-item active"><Link className="page-link" to="#">1</Link></li>
                                 <li className="page-item"><Link className="page-link" to="#">2</Link></li>
-                                <li className="page-item active"><Link className="page-link" to="#">3</Link></li>
+                                <li className="page-item"><Link className="page-link" to="#">3</Link></li>
                                 <li className="page-item"><Link className="page-link" to="#">...</Link></li>
                                 <li className="page-item"><Link className="page-link" to="#">18</Link></li>
                                 <li className="page-item">
@@ -131,10 +136,6 @@ export default function GridLayoutWithSidebar() {
                             </ul>
                         </div>
                     </div>
-            
-                </div>
-                
-            </div>
         </div>	
     </section>
 

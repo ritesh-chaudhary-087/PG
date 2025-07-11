@@ -13,7 +13,7 @@ import AppDownload from '../../components/app-download'
 import FooterTop from '../../components/footer-top'
 import Footer from '../../components/footer'
 import FormTwo from '../../components/form-two'
-import ScrollToTop from '../../components/scroll-to-top'
+import ScrollToTop from '../hooks/ScrollToTop'
 
 export default function IndexNine() {
   return (

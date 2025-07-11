@@ -109,10 +109,10 @@ export default function Navbar({transparent}:{transparent:any}) {
                              <li className={`${['/AboutPage'].includes(current) ? 'active' : ''} ${activeMenu['AboutPage']?.main ? 'show' : ''}`} onMouseEnter={() => handleMouseEnter('AboutPage')} onMouseLeave={() => handleMouseLeave('AboutPage')}><Link to="/aboutpage">About Us</Link> 
                             </li>
                             
-                            <li className={` ${['/grid-layout-with-sidebar'].includes(current) ? 'active' : ''} ${activeMenu['grid-layout-with-sidebar']?.main ? 'show' : ''}`} onMouseEnter={() => handleMouseEnter('grid-layout-with-sidebar')} onMouseLeave={() => handleMouseLeave('grid-layout-with-sidebar')}><Link to="grid-layout-with-sidebar">Listings</Link>  
+                            <li className={` ${['/grid-layout-with-sidebar'].includes(current) ? 'active' : ''} ${activeMenu['grid-layout-with-sidebar']?.main ? 'show' : ''}`} onMouseEnter={() => handleMouseEnter('grid-layout-with-sidebar')} onMouseLeave={() => handleMouseLeave('grid-layout-with-sidebar')}><Link to="/grid-layout-with-sidebar">Listings</Link>  
                             </li>
 
-                             <li className={` ${['/Pricing'].includes(current) ? 'active' : ''} ${activeMenu['Pricing']?.main ? 'show' : ''}`} onMouseEnter={() => handleMouseEnter('Pricing')} onMouseLeave={() => handleMouseLeave('Pricing')}><Link to="Pricing">Pricing</Link>  
+                             <li className={` ${['/Pricing'].includes(current) ? 'active' : ''} ${activeMenu['Pricing']?.main ? 'show' : ''}`} onMouseEnter={() => handleMouseEnter('Pricing')} onMouseLeave={() => handleMouseLeave('Pricing')}><Link to="/Pricing">Pricing</Link>  
                             </li>
                             
                             <li className={`${['/single-property-1','/single-property-2','/single-property-3','/single-property-4','/agents','/agent-page','/add-agent','/edit-agent','/agencies','/agency-page','/dashboard','/create-account','/my-profile','/payment','/checkout','/my-property','/bookmark-list','change-password','/compare-property','/submit-property'].includes(current)?'active':''} ${activeMenu['feature']?.main ? 'show' : ''}`} onMouseEnter={() => handleMouseEnter('feature')} onMouseLeave={() => handleMouseLeave('feature')}><Link to="#">Features<FiChevronDown className="submenu-indicator"/></Link>

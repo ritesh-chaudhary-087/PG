@@ -16,7 +16,7 @@ import Video from './pages/index/video';
 import Map from './pages/index/map';
 import ListLayoutOne from './pages/property/list-layout-one';
 import ListLayoutTwo from './pages/property/list-layout-two';
-import ScrollToTop from './components/scroll-to-top';
+
 import ListLayoutThree from './pages/property/list-layout-three';
 import ListLayoutWithMap from './pages/property/list-layout-with-map';
 import ListLayoutFull from './pages/property/list-layout-full';
@@ -71,8 +71,11 @@ import Schedule from './pages/PropertyListing/Schedule';
 import PropertyListing from './pages/PropertyListing/PropertyListing';
 import LocalityDetails from './pages/PropertyListing/LocalityDetails';
 import RentalDetails from './pages/PropertyListing/RentalDetails';
+import useLenis from '../src/pages/hooks/useLenis';
+import ScrollToTop from '../src/pages/hooks/ScrollToTop';
 
 function App() {
+  useLenis();
   const [activeSection, setActiveSection] = useState("privacy"); 
 
   const sections = [
@@ -82,7 +85,9 @@ function App() {
 
   return (
     <>
+    <ScrollToTop /> {/* ✅ Must be inside BrowserRouter */}
       <Routes>
+        
         <Route path='/' element={<Index/>}/>
         <Route path='/home-2' element={<IndexTwo/>}/>
         <Route path='/home-3' element={<IndexThree/>}/>

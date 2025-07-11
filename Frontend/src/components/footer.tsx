@@ -90,7 +90,7 @@ export default function Footer() {
             <div className="container">
                 <div className="row align-items-center">
                     <div className="col-lg-6 col-md-6">
-                        <p className="mb-0">© {new Date().getFullYear()} Resido. Develop with <i className="fa-solid fa-heart ms-1 text-danger"></i>  By <Link to="https://shreethemes.in/" target="_blank">Shreethemes</Link></p>
+                        <p className="mb-0">© {new Date().getFullYear()} Resido. Develop by <Link to="https://arisecommunications.co/" target="_blank"><b>Arise Communications.</b></Link></p>
                     </div>
                     <div className="col-lg-6 col-md-6 text-right">
                         <ul className="footer-bottom-social">
