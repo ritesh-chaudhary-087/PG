@@ -13,6 +13,7 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@types/tiny-slider-react": "^0.3.8",
+    "axios": "^1.10.0",
     "google-map-react": "^2.2.1",
     "rc-slider": "^11.1.7",
     "rc-tooltip": "^6.3.1",
