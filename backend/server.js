@@ -16,11 +16,21 @@ const authRoutes = require("./routes/authRoutes");
 const propertyRoutes = require("./routes/propertyRoutes");
 const inquiryRoutes = require("./routes/inquiryRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
+const localityRoutes = require("./routes/localityRoutes");
+const rentalDetailsRoutes = require("./routes/rentalDetailsRoutes");
+const amenitiesRoutes = require("./routes/amenitiesRoutes");
+const galleryRoutes = require("./routes/galleryRoutes");
+const scheduleRoutes = require("./routes/scheduleRoutes");
 
 app.use("/api/auth", authRoutes);
 app.use("/api/properties", propertyRoutes);
 app.use("/api/inquiries", inquiryRoutes);
 app.use("/api/reviews", reviewRoutes);
+app.use("/api/localities", localityRoutes);
+app.use("/api/rental-details", rentalDetailsRoutes);
+app.use("/api/amenities", amenitiesRoutes);
+app.use("/api/gallery", galleryRoutes);
+app.use("/api/schedule", scheduleRoutes);
 
 // Static folder for images (only if not using Cloudinary)
 app.use("/uploads", express.static("uploads"));

@@ -44,7 +44,19 @@ exports.getPropertyById = async (req, res) => {
     if (!property)
       return res.status(404).json({ message: "Property not found" });
 
-    res.json(property);
+    // Include current user info if authenticated
+    const user = req.user
+      ? {
+          id: req.user._id,
+          name: req.user.name,
+          email: req.user.email,
+          role: req.user.role,
+          city: req.user.city,
+          phone: req.user.phone,
+        }
+      : null;
+
+    res.json({ property, owner: property.owner, user });
   } catch {
     res.status(500).json({ message: "Server error" });
   }
