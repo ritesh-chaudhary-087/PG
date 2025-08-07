@@ -71,6 +71,7 @@ import Schedule from './pages/PropertyListing/Schedule';
 import PropertyListing from './pages/PropertyListing/PropertyListing';
 import LocalityDetails from './pages/PropertyListing/LocalityDetails';
 import RentalDetails from './pages/PropertyListing/RentalDetails';
+import ForgotPasswordModal from './components/navbar/ForgotPasswordModal';
 
 function App() {
   const [activeSection, setActiveSection] = useState("privacy"); 
@@ -165,7 +166,6 @@ function App() {
         <Route path="Amenities" element={<Amenities/>}/>
         <Route path="Gallery" element={<Gallery/>}/>
         <Route path="Schedule" element={<Schedule/>}/>
-
       </Routes>
       <ScrollToTop/>
     </>
