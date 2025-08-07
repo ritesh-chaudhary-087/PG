@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { baseURL } from '../../Api/Common_Api';
 
-
-
 export default function CreateAccount() {
   const [formData, setFormData] = useState({
     name: '',
