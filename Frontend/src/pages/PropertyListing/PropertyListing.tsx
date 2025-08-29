@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import PropertySidebar from './PropertySidebar'
 import Footer from '../../components/footer'
 import Navbar from '../../components/navbar/navbar'
+import { postPropertyData } from '../../Api/Common_Api'; 
 
 export default function PropertyListing() {
   const [show, setShow] = useState<boolean>(false)
@@ -14,7 +15,7 @@ export default function PropertyListing() {
     noOfFloors: '',
     propertyAge: '',
     facing: '',
-    buildUpArea: '500 Sq.ft',
+    buildUpArea: '',
   })
 
   useEffect(() => {
@@ -31,12 +32,58 @@ export default function PropertyListing() {
     sessionStorage.setItem('propertyFormData', JSON.stringify(updatedForm))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    sessionStorage.setItem('propertyFormData', JSON.stringify(formData))
-    alert('Data saved to session storage!')
-  }
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault()
+  //   sessionStorage.setItem('propertyFormData', JSON.stringify(formData))
+  //   alert('Data saved to session storage!')
+  // }
 
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  // Convert the field to number as per your interface
+  const payload = {
+    ...formData,
+    noOfFloors: parseInt(formData.noOfFloors || '0', 10),
+  };
+
+  console.log("Submitting data:", payload); // ✅ Debug log
+
+  try {
+    const response = await postPropertyData(payload);
+    console.log("API response:", response); // ✅ Debug log
+
+    if (response.status === 201 || response.status === 200) {
+      alert('Property data saved successfully!');
+    } else {
+      alert('Failed to save property data.');
+    }
+  } catch (error: any) {
+  if (error.response) {
+    console.error("❌ Server responded with error:", error.response.status, error.response.data);
+  } else if (error.request) {
+    console.error("❌ No response received:", error.request);
+  } else {
+    console.error("❌ Error setting up request:", error.message);
+  }
+  alert("Something went wrong while saving your data.");
+}
+  
+  finally {
+    // Clear the session storage after submission
+    sessionStorage.removeItem('propertyFormData');
+    setFormData({
+      apartmentType: '',
+      apartmentName: '',
+      bhkType: '',
+      noOfFloors: '',
+      propertyAge: '',
+      facing: '',
+      buildUpArea: '',
+    });
+};
+  }
+  
   return (
     <>
     <Navbar transparent={false} />

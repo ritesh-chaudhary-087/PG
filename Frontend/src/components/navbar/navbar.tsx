@@ -11,6 +11,9 @@ import users from '../../assets/img/svg/users.svg'
 import addImg from '../../assets/img/svg/add.svg'
 import bar from '../../assets/img/svg/bar.svg'
 import loginImg from '../../assets/img/svg/login.svg'
+import axios from 'axios';
+import { baseURL } from '../../Api/Common_Api';
+import ForgotPasswordModal from './ForgotPasswordModal';
 
 export default function Navbar({transparent}:{transparent:any}) {
     const [activeMenu, setActiveMenu] = useState<{[key: string]: { [key: string]: boolean };}>({});
@@ -19,6 +22,11 @@ export default function Navbar({transparent}:{transparent:any}) {
     const [login, setLogin] = useState<boolean>(false);
     const [property, setProperty] = useState<boolean>(false);
     const [activeTab, setActiveTab] = useState<number>(1)
+     const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [loginError, setLoginError] = useState('');
+    const [loginSuccess, setLoginSuccess] = useState('');
+    const [showForgotModal, setShowForgotModal] = useState(false); // forgot modal visibility
 
     let[scroll,setScroll] = useState<boolean>(false)
 
@@ -45,7 +53,56 @@ export default function Navbar({transparent}:{transparent:any}) {
           },
         }));
       };
+const handleLogin = async () => {
+    setLoginError('');
+    setLoginSuccess('');
 
+    if (!email || !password) {
+        setLoginError('Please enter both email and password.');
+        return;
+    }
+
+    const isValidEmail = /\S+@\S+\.\S+/.test(email);
+    if (!isValidEmail) {
+        setLoginError('Please enter a valid email address.');
+        return;
+    }
+
+    try {
+        console.log("Sending login request...");
+
+        const response = await axios.post(`${baseURL}/api/auth/login`, {
+            email,
+            password,
+        });
+
+        console.log("Login response:", response.data);
+
+        if (response.status === 200) {
+            setLoginSuccess('Login successful!');
+            setEmail('');
+            setPassword('');
+            setLogin(false);
+            // Optionally store token or redirect
+        } else {
+            setLoginError('Invalid credentials.');
+        }
+    } catch (error) {
+        console.error("Login error:", error);
+
+        if (axios.isAxiosError(error)) {
+            if (error.response?.status === 401) {
+                setLoginError('Invalid email or password.');
+            } else if (error.response) {
+                setLoginError(`Error: ${error.response.status} - ${error.response.statusText}`);
+            } else {
+                setLoginError('Network error. Try again later.');
+            }
+        } else {
+            setLoginError('An unexpected error occurred.');
+        }
+    }
+};
       useEffect(()=>{
         window.scrollTo(0,0)
 
@@ -236,39 +293,57 @@ export default function Navbar({transparent}:{transparent:any}) {
                                     </svg>
                                 </span>
                             </div>
-                            <div className="login-form">
-                                <form>
-                                
-                                    <div className="form-floating mb-3">
-                                        <input type="email" className="form-control" placeholder="name@example.com"/>
-                                        <label>Email address</label>
-                                    </div>
-                                    
-                                    <div className="form-floating mb-3">
-                                        <input type="password" className="form-control" placeholder="Password"/>
-                                        <label>Password</label>
-                                    </div>
-                                    
-                                    <div className="form-group mb-3">
-                                        <div className="d-flex align-items-center justify-content-between">
-                                            <div className="flex-shrink-0 flex-first">
-                                                <div className="form-check form-check-inline">
-                                                    <input className="form-check-input" type="checkbox" id="save-pass" value="option1"/>
-                                                    <label className="form-check-label" htmlFor="save-pass">Save Password</label>
-                                                </div>	
-                                            </div>
-                                            <div className="flex-shrink-0 flex-first">
-                                                <Link to="#" className="link fw-medium">Forgot Password?</Link>	
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="form-group">
-                                        <button type="button" className="btn btn-lg btn-primary fw-medium full-width rounded-2">LogIn</button>
-                                    </div>
-                                
-                                </form>
-                            </div>
+                              <form onSubmit={(e) => e.preventDefault()}>
+                                   <div className="form-floating mb-3">
+                                       <input
+                                           type="email"
+                                           className="form-control"
+                                           placeholder="name@example.com"
+                                           value={email}
+                                           onChange={(e) => setEmail(e.target.value)}
+                                       />
+                                       <label>Email address</label>
+                                   </div>
+                           
+                                   <div className="form-floating mb-3">
+                                       <input
+                                           type="password"
+                                           className="form-control"
+                                           placeholder="Password"
+                                           value={password}
+                                           onChange={(e) => setPassword(e.target.value)}
+                                       />
+                                       <label>Password</label>
+                                   </div>
+                           
+                                   <div className="form-group mb-3">
+                                       <div className="d-flex align-items-center justify-content-between">
+                                           <div className="form-check form-check-inline">
+                                               <input className="form-check-input" type="checkbox" id="save-pass" />
+                                               <label className="form-check-label" htmlFor="save-pass">Save Password</label>
+                                           </div>
+                                           <Link to="#" className="link fw-medium" onClick={() => {
+                                             setLogin(false);          // hide login modal
+                                             setShowForgotModal(true); // show forgot password modal
+                                            }}>
+                                           Forgot Password?
+                                          </Link>
+                                       </div>
+                                   </div>
+                           
+                                   {loginError && <div className="alert alert-danger py-2">{loginError}</div>}
+                                   {loginSuccess && <div className="alert alert-success py-2">{loginSuccess}</div>}
+                           
+                                   <div className="form-group">
+                                       <button
+                                           type="button"
+                                           className="btn btn-lg btn-primary fw-medium full-width rounded-2"
+                                           onClick={handleLogin}
+                                       >
+                                           LogIn
+                                       </button>
+                                   </div>
+                               </form>
                             <div className="modal-divider"><span>Or login via</span></div>
                             <div className="social-login mb-3">
                                 <ul>
@@ -284,6 +359,10 @@ export default function Navbar({transparent}:{transparent:any}) {
                 </div>
             </div>
         }
+           {showForgotModal && (<ForgotPasswordModal onClose={() => {
+                 setShowForgotModal(false);
+                 setLogin(true); // optional: show login modal again when closing forgot modal
+}} />)}
 
         <div className={`offcanvas offcanvas-end  ${property ? 'show' : ''}`}>
             <div className="offcanvas-header">

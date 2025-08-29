@@ -17,19 +17,19 @@ router.get("/count-by-city", propertyController.getPropertyCountByCity);
 router.post(
   "/",
   authenticate,
-  authorizeRoles("owner"),
+  authorizeRoles("user", "owner"),
   propertyController.createProperty
 );
 router.put(
   "/:id",
   authenticate,
-  authorizeRoles("owner"),
+  authorizeRoles("user", "owner"),
   propertyController.updateProperty
 );
 router.delete(
   "/:id",
   authenticate,
-  authorizeRoles("owner"),
+  authorizeRoles("user", "owner"),
   propertyController.deleteProperty
 );
 
