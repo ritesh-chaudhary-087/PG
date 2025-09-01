@@ -10,6 +10,7 @@ const PropertySchema = new mongoose.Schema(
     facing: { type: String, required: true },
     buildUpArea: { type: String, required: true },
     owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    city: { type: String, required: true },
   },
   { timestamps: true }
 );

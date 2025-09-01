@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import NavLight from '../../components/navbar/nav-light'
+import Navbar from '../../components/navbar/navbar'
 import FormTwo from '../../components/form-two'
 import Achievement from '../../components/achievement'
 import PropertySlider from '../../components/property-slider'
@@ -17,7 +17,7 @@ import bg from '../../assets/img/banners.mp4'
 export default function Video() {
   return (
     <>
-        <NavLight/>
+        <Navbar transparent={true}/>
 
         <div className="hero-banner vedio-banner">
             <div className="overlay"></div>	

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import bg from '../../assets/img/banner.svg'
 
-import NavLight from '../../components/navbar/nav-light'
+import Navbar from '../../components/navbar/navbar'
 import Achievement from '../../components/achievement'
 import PropertySlider from '../../components/property-slider'
 import SellPropertyOne from '../../components/sell-property-one'
@@ -18,7 +18,7 @@ import FormTwo from '../../components/form-two'
 export default function IndexTwo() {
   return (
     <>
-     <NavLight/>
+     <Navbar transparent={false}/>
 
     <div className="image-bottom hero-banner bg-primary" style={{backgroundImage:`url(${bg})`, backgroundRepeat:'no-repeat'}} data-overlay="0">
         <div className="container">

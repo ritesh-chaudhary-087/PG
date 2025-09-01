@@ -1,129 +1,173 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { FiChevronDown } from "react-icons/fi";
 import { TiSocialGooglePlus, TiSocialFacebook } from "react-icons/ti";
 
-import { navProperty } from '../../data/data';
+import { navProperty } from "../../data/data";
 
-import logo from '../../assets/img/logo.svg'
-import users from '../../assets/img/svg/users.svg'
-import addImg from '../../assets/img/svg/add.svg'
-import bar from '../../assets/img/svg/bar.svg'
-import loginImg from '../../assets/img/svg/login.svg'
-import axios from 'axios';
-import { baseURL } from '../../Api/Common_Api';
-import ForgotPasswordModal from './ForgotPasswordModal';
+import logo from "../../assets/img/logo.svg";
+import users from "../../assets/img/svg/users.svg";
+import addImg from "../../assets/img/svg/add.svg";
+import bar from "../../assets/img/svg/bar.svg";
+import loginImg from "../../assets/img/svg/login.svg";
+import axios from "axios";
+import { baseURL } from "../../Api/Common_Api";
+import ForgotPasswordModal from "./ForgotPasswordModal";
 
-export default function Navbar({transparent}:{transparent:any}) {
-    const [activeMenu, setActiveMenu] = useState<{[key: string]: { [key: string]: boolean };}>({});
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    const [toggle, setIsToggle] = useState<boolean>(false);
-    const [login, setLogin] = useState<boolean>(false);
-    const [property, setProperty] = useState<boolean>(false);
-    const [activeTab, setActiveTab] = useState<number>(1)
-     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [loginError, setLoginError] = useState('');
-    const [loginSuccess, setLoginSuccess] = useState('');
-    const [showForgotModal, setShowForgotModal] = useState(false); // forgot modal visibility
+export default function Navbar({ transparent }: { transparent: any }) {
+  const [activeMenu, setActiveMenu] = useState<{
+    [key: string]: { [key: string]: boolean };
+  }>({});
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [toggle, setIsToggle] = useState<boolean>(false);
+  const [login, setLogin] = useState<boolean>(false);
+  const [property, setProperty] = useState<boolean>(false);
+  const [activeTab, setActiveTab] = useState<number>(1);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState("");
+  const [loginSuccess, setLoginSuccess] = useState("");
+  const [showForgotModal, setShowForgotModal] = useState(false);
+  const [user, setUser] = useState<any>(null);
 
-    let[scroll,setScroll] = useState<boolean>(false)
+  let [scroll, setScroll] = useState<boolean>(false);
 
-    const location = useLocation(); 
-    const current = location.pathname
+  const location = useLocation();
+  const current = location.pathname;
+  const navigate = useNavigate();
 
-    const handleMouseEnter = (menu: string, submenu?: string) => {
-        setActiveMenu((prev) => ({
-          ...prev,
-          [menu]: {
-            ...prev[menu],
-            [submenu || 'main']: true, // Open main menu or submenu
-          },
-        }));
-      };
-    
-      // Handle mouse leave for any menu or submenu
-      const handleMouseLeave = (menu: string, submenu?: string) => {
-        setActiveMenu((prev) => ({
-          ...prev,
-          [menu]: {
-            ...prev[menu],
-            [submenu || 'main']: false, // Close main menu or submenu
-          },
-        }));
-      };
-const handleLogin = async () => {
-    setLoginError('');
-    setLoginSuccess('');
+  // ✅ Menu hover handlers
+  const handleMouseEnter = (menu: string, submenu?: string) => {
+    setActiveMenu((prev) => ({
+      ...prev,
+      [menu]: {
+        ...prev[menu],
+        [submenu || "main"]: true,
+      },
+    }));
+  };
+
+  const handleMouseLeave = (menu: string, submenu?: string) => {
+    setActiveMenu((prev) => ({
+      ...prev,
+      [menu]: {
+        ...prev[menu],
+        [submenu || "main"]: false,
+      },
+    }));
+  };
+
+  // ✅ Handle login
+  const handleLogin = async () => {
+    setLoginError("");
+    setLoginSuccess("");
 
     if (!email || !password) {
-        setLoginError('Please enter both email and password.');
-        return;
+      setLoginError("Please enter both email and password.");
+      return;
     }
 
     const isValidEmail = /\S+@\S+\.\S+/.test(email);
     if (!isValidEmail) {
-        setLoginError('Please enter a valid email address.');
-        return;
+      setLoginError("Please enter a valid email address.");
+      return;
     }
 
     try {
-        console.log("Sending login request...");
+      const response = await axios.post(`${baseURL}/api/auth/login`, {
+        email,
+        password,
+      });
 
-        const response = await axios.post(`${baseURL}/api/auth/login`, {
-            email,
-            password,
+      if (response.status === 200) {
+        const { token, user } = response.data; // 👈 backend should return this
+
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
+        setUser(user);
+
+        setLoginSuccess("Login successful!");
+        setEmail("");
+        setPassword("");
+        setLogin(false);
+      } else {
+        setLoginError("Invalid credentials.");
+      }
+    } catch (error: any) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 401) {
+          setLoginError("Invalid email or password.");
+        } else {
+          setLoginError(
+            `Error: ${error.response?.status} - ${error.response?.statusText}`
+          );
+        }
+      } else {
+        setLoginError("An unexpected error occurred.");
+      }
+    }
+  };
+
+  // ✅ Load user from localStorage on mount
+  useEffect(() => {
+    const savedUser = localStorage.getItem("user");
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+  }, []);
+
+  // ✅ Fetch user info from backend (token based)
+  useEffect(() => {
+    const fetchUser = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      try {
+        const response = await axios.get(`${baseURL}/api/auth/me`, {
+          headers: { Authorization: `Bearer ${token}` },
         });
 
-        console.log("Login response:", response.data);
+        setUser(response.data);
+        localStorage.setItem("user", JSON.stringify(response.data));
+      } catch (error) {
+        console.error("Failed to fetch user:", error);
+        setUser(null);
+      }
+    };
 
-        if (response.status === 200) {
-            setLoginSuccess('Login successful!');
-            setEmail('');
-            setPassword('');
-            setLogin(false);
-            // Optionally store token or redirect
-        } else {
-            setLoginError('Invalid credentials.');
-        }
-    } catch (error) {
-        console.error("Login error:", error);
+    fetchUser();
+  }, []);
 
-        if (axios.isAxiosError(error)) {
-            if (error.response?.status === 401) {
-                setLoginError('Invalid email or password.');
-            } else if (error.response) {
-                setLoginError(`Error: ${error.response.status} - ${error.response.statusText}`);
-            } else {
-                setLoginError('Network error. Try again later.');
-            }
-        } else {
-            setLoginError('An unexpected error occurred.');
-        }
-    }
-};
-      useEffect(()=>{
-        window.scrollTo(0,0)
+  // ✅ Handle logout
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setUser(null);
+    navigate("/login");
+  };
 
-        const handlerScroll=()=>{
-            if(window.scrollY > 50){
-                setScroll(true)
-            }else{setScroll(false)}
-        }
+  // ✅ Scroll + resize
+  useEffect(() => {
+    window.scrollTo(0, 0);
 
-        const handleResize = () => {
-            setWindowWidth(window.innerWidth);
-          };
+    const handlerScroll = () => {
+      setScroll(window.scrollY > 50);
+    };
 
-        window.addEventListener('scroll',handlerScroll)
-        window.addEventListener('resize', handleResize);
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
 
-        return () => {
-            window.removeEventListener('scroll',handlerScroll)
-            window.removeEventListener('resize', handleResize);
-          };
-    },[windowWidth])
+    window.addEventListener("scroll", handlerScroll);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("scroll", handlerScroll);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [windowWidth]);
+
 
   return (
     <>
@@ -243,7 +287,8 @@ const handleLogin = async () => {
                                             <rect x="7" y="6" width="4" height="4" rx="2" fill="currentColor"/>
                                         </svg>
                                     </span>
-                                    SignUp or SignIn
+                                    Hi, {user ? user.name : 'Guest'}
+
                                 </Link>
                             </li>
                             <li className="add-listing">

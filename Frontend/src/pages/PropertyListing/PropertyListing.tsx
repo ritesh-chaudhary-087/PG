@@ -3,86 +3,62 @@ import { Link } from 'react-router-dom'
 import PropertySidebar from './PropertySidebar'
 import Footer from '../../components/footer'
 import Navbar from '../../components/navbar/navbar'
-import { postPropertyData } from '../../Api/Common_Api'; 
+import { postPropertyData } from "../../Api/Common_Api";
 
 export default function PropertyListing() {
-  const [show, setShow] = useState<boolean>(false)
+  const [show, setShow] = useState<boolean>(false);
 
   const [formData, setFormData] = useState({
-    apartmentType: '',
-    apartmentName: '',
-    bhkType: '',
-    noOfFloors: '',
-    propertyAge: '',
-    facing: '',
-    buildUpArea: '',
-  })
+    apartmentType: "",
+    apartmentName: "",
+    bhkType: "",
+    noOfFloors: "",
+    propertyAge: "",
+    facing: "",
+    buildUpArea: "",
+    city: "",
+  });
 
-  useEffect(() => {
-    const savedData = sessionStorage.getItem('propertyFormData')
-    if (savedData) {
-      setFormData(JSON.parse(savedData))
-    }
-  }, [])
-
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
-    const { name, value } = e.target
-    const updatedForm = { ...formData, [name]: value }
-    setFormData(updatedForm)
-    sessionStorage.setItem('propertyFormData', JSON.stringify(updatedForm))
-  }
-
-  // const handleSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault()
-  //   sessionStorage.setItem('propertyFormData', JSON.stringify(formData))
-  //   alert('Data saved to session storage!')
-  // }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-
-  // Convert the field to number as per your interface
-  const payload = {
-    ...formData,
-    noOfFloors: parseInt(formData.noOfFloors || '0', 10),
+  // ✅ handle change
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  console.log("Submitting data:", payload); // ✅ Debug log
+  // ✅ handle submit
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-  try {
-    const response = await postPropertyData(payload);
-    console.log("API response:", response); // ✅ Debug log
-
-    if (response.status === 201 || response.status === 200) {
-      alert('Property data saved successfully!');
-    } else {
-      alert('Failed to save property data.');
-    }
-  } catch (error: any) {
-  if (error.response) {
-    console.error("❌ Server responded with error:", error.response.status, error.response.data);
-  } else if (error.request) {
-    console.error("❌ No response received:", error.request);
-  } else {
-    console.error("❌ Error setting up request:", error.message);
+  const token = localStorage.getItem("token"); // ✅ read token
+  if (!token) {
+    alert("You must log in first!");
+    return;
   }
-  alert("Something went wrong while saving your data.");
+    try {
+      // token should come from your login/auth context/localStorage
+      const token = localStorage.getItem("token") || "";
+      const res = await postPropertyData(formData, token);
+      alert("Property added successfully!");
+
+      console.log("Saved Property:", res.data);
+
+      // reset form
+      setFormData({
+        apartmentType: "",
+        apartmentName: "",
+        bhkType: "",
+        noOfFloors: "",
+        propertyAge: "",
+        facing: "",
+        buildUpArea: "",
+        city: "",
+      });
+    } catch (error) {
+  console.error("Error adding property:", JSON.stringify(error, null, 2));
 }
-  
-  finally {
-    // Clear the session storage after submission
-    sessionStorage.removeItem('propertyFormData');
-    setFormData({
-      apartmentType: '',
-      apartmentName: '',
-      bhkType: '',
-      noOfFloors: '',
-      propertyAge: '',
-      facing: '',
-      buildUpArea: '',
-    });
-};
-  }
+
+  };
+
   
   return (
     <>
@@ -213,6 +189,19 @@ export default function PropertyListing() {
                           value={formData.buildUpArea}
                           onChange={handleChange}
                         />
+                      </div>
+                      
+                      <div className="form-group col-md-6 position-relative">
+                        <label>City *</label>
+                        <select className="form-control pr-5" name="city" value={formData.city} onChange={handleChange}>
+                          <option value="">Select City</option>
+                          <option value="Mumbai">Mumbai</option>
+                          <option value="Pune">Pune</option>
+                          <option value="Nashik">Nashik</option>
+                          <option value="Banglore">Banglore</option>
+                          <option value="Hydrabad">Hydrabad</option>
+                        </select>
+                        <i className="fa fa-chevron-down position-absolute" style={{ top: '60%', right: '25px', transform: 'translateY(-50%)', pointerEvents: 'none', color: '#999' }}></i>
                       </div>
 
                     </div>

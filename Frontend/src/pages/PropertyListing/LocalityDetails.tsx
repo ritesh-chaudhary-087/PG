@@ -3,36 +3,54 @@ import { Link } from 'react-router-dom'
 import PropertySidebar from '../PropertyListing/PropertySidebar'
 import Navbar from '../../components/navbar/navbar'
 import Footer from '../../components/footer'
+import { postLocalityData } from "../../Api/Common_Api";
 
 export default function LocalityDetails() {
-  const [show, setShow] = useState(false)
-
-  const [formData, setFormData] = useState({
-    city: '',
+   const [show, setShow] = useState<boolean>(false);
+  
+    const [formData, setFormData] = useState({
+      city: '',
     locality: '',
     landmark: '',
-    mapSearch: ''
-  })
-
-  useEffect(() => {
-    const savedData = sessionStorage.getItem('localityFormData')
-    if (savedData) {
-      setFormData(JSON.parse(savedData))
+    mapSearch: '',
+    });
+  
+    // ✅ handle change
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+      const { name, value } = e.target;
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    };
+  
+    // ✅ handle submit
+   const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+  
+    const token = localStorage.getItem("token"); // ✅ read token
+    if (!token) {
+      alert("You must log in first!");
+      return;
     }
-  }, [])
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
-    const updated = { ...formData, [name]: value }
-    setFormData(updated)
-    sessionStorage.setItem('localityFormData', JSON.stringify(updated))
+      try {
+        // token should come from your login/auth context/localStorage
+        const token = localStorage.getItem("token") || "";
+        const res = await postLocalityData(formData, token);
+        alert("Locality added successfully!");
+  
+        console.log("Saved Locality:", res.data);
+  
+        // reset form
+        setFormData({
+            city: '',
+    locality: '',
+    landmark: '',
+    mapSearch: '',
+        });
+      } catch (error) {
+    console.error("Error adding locality:", JSON.stringify(error, null, 2));
   }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    sessionStorage.setItem('localityFormData', JSON.stringify(formData))
-    alert('Locality details saved!')
-  }
+  
+    };
+  
 
   return (
     <>

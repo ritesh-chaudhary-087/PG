@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import Select from 'react-select';
@@ -8,7 +8,7 @@ import SideFilter from '../../components/side-filter'
 import GridProperty from '../../components/grid-property'
 import FooterTop from '../../components/footer-top';
 import Footer from '../../components/footer';
-
+import { getAllProperties } from "../../Api/Common_Api";
 import { propertyData } from '../../data/data'
 
 export default function GridLayoutWithSidebar() {
@@ -18,6 +18,21 @@ export default function GridLayoutWithSidebar() {
         { value: '1', label: 'High Price' },
         { value: '1', label: 'Most Popular' },
     ]
+
+    // export default function PropertyListPage() {
+  const [properties, setProperties] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchProperties = async () => {
+      try {
+        const res = await getAllProperties();
+        setProperties(res.data);
+      } catch (error) {
+        console.error("Error fetching properties:", error);
+      }
+    };
+    fetchProperties();
+  }, []);
 
   return (
     <>
