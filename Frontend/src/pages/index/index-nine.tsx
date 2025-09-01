@@ -2,7 +2,7 @@ import React from 'react'
 
 import bg from '../../assets/img/new-banner.jpg'
 
-import NavLight from '../../components/navbar/nav-light'
+import Navbar from '../../components/navbar/navbar'
 import ExplorePropertyOne from '../../components/explore-property-one'
 import PropertySlider from '../../components/property-slider'
 import SellPropertyOne from '../../components/sell-property-one'
@@ -13,12 +13,12 @@ import AppDownload from '../../components/app-download'
 import FooterTop from '../../components/footer-top'
 import Footer from '../../components/footer'
 import FormTwo from '../../components/form-two'
-import ScrollToTop from '../../components/scroll-to-top'
+import ScrollToTop from '../hooks/ScrollToTop'
 
 export default function IndexNine() {
   return (
     <>
-	<NavLight/>
+	<Navbar transparent={true}/>
 
 	<div className="image-bottom hero-banner" style={{backgroundImage:`url(${bg})`, backgroundRepeat:'no-repeat', backgroundColor:'#2540a2'}}data-overlay="7">
 		<div className="container">

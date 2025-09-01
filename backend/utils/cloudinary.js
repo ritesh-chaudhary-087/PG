@@ -11,7 +11,7 @@ const storage = new CloudinaryStorage({
   cloudinary,
   params: {
     folder: 'colive-properties',
-    allowed_formats: ['jpg', 'jpeg', 'png'],
+    allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'Aif'],
     transformation: [{ width: 800, height: 600, crop: "limit" }]
   }
 });

@@ -30,7 +30,7 @@ export default function GridProperty({item,border}:{item:any, border:any}) {
         <div className={`property-listing card rounded-3 ${border ? 'border' : 'border-0'}`}>
           <div className={`listing-img-wrapper p-3 `}>
               <div className="list-img-slide position-relative">
-                  <div className="position-absolute top-0 left-0 ms-3 mt-3 z-1">
+                  {/* <div className="position-absolute top-0 left-0 ms-3 mt-3 z-1">
                     {item.tag.map((el:any, index:number)=>{
                       return(
                         
@@ -44,7 +44,7 @@ export default function GridProperty({item,border}:{item:any, border:any}) {
                         </div>
                       )
                     })}
-                  </div>
+                  </div> */}
                   <div className="click rounded-3 overflow-hidden mb-0">
                       <TinySlider settings={settings}>
                         {item.image.map((el:any, index:number) => {
@@ -62,8 +62,8 @@ export default function GridProperty({item,border}:{item:any, border:any}) {
                   <div className="listing-short-detail-wrap">
                       <div className="listing-short-detail">
                           <div className="d-flex align-items-center">
-                            {item.tag2 === "For Rent" && <span className="label bg-light-success text-success prt-type me-2">For Rent</span>}
-                            {item.tag2 === "For Sell" && <span className="label bg-light-danger text-danger prt-type me-2">For Sell</span>}
+                            {/* {item.tag2 === "For Rent" && <span className="label bg-light-success text-success prt-type me-2">For Rent</span>}
+                            {item.tag2 === "For Sell" && <span className="label bg-light-danger text-danger prt-type me-2">For Sell</span>} */}
                               <span className="label bg-light-purple text-purple property-cats">{item.type}</span>
                           </div>
                           <h4 className="listing-name fw-semibold fs-5 mb-2 mt-3"><Link to={`/single-property-1/${item.id}`}>{item.name}</Link></h4>
@@ -94,8 +94,8 @@ export default function GridProperty({item,border}:{item:any, border:any}) {
                       <h6 className="listing-card-info-price m-0">{item.value}</h6>
                   </div>
                   <div className="footer-flex">
-                                           <Link to="/single-property-1" className="btn btn-md btn-primary fw-medium">View Detail</Link>
-                                       </div>
+                      <Link to="/single-property-1" className="btn btn-md btn-primary fw-medium">View Detail</Link>
+                  </div>
               </div>
           
           </div>

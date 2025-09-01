@@ -3,40 +3,63 @@ import { Link } from 'react-router-dom'
 import PropertySidebar from './PropertySidebar'
 import Footer from '../../components/footer'
 import Navbar from '../../components/navbar/navbar'
+import { postPropertyData } from "../../Api/Common_Api";
 
 export default function PropertyListing() {
-  const [show, setShow] = useState<boolean>(false)
+  const [show, setShow] = useState<boolean>(false);
 
   const [formData, setFormData] = useState({
-    apartmentType: '',
-    apartmentName: '',
-    bhkType: '',
-    noOfFloors: '',
-    propertyAge: '',
-    facing: '',
-    buildUpArea: '500 Sq.ft',
-  })
+    apartmentType: "",
+    apartmentName: "",
+    bhkType: "",
+    noOfFloors: "",
+    propertyAge: "",
+    facing: "",
+    buildUpArea: "",
+    city: "",
+  });
 
-  useEffect(() => {
-    const savedData = sessionStorage.getItem('propertyFormData')
-    if (savedData) {
-      setFormData(JSON.parse(savedData))
-    }
-  }, [])
+  // ✅ handle change
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
-    const { name, value } = e.target
-    const updatedForm = { ...formData, [name]: value }
-    setFormData(updatedForm)
-    sessionStorage.setItem('propertyFormData', JSON.stringify(updatedForm))
+  // ✅ handle submit
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  const token = localStorage.getItem("token"); // ✅ read token
+  if (!token) {
+    alert("You must log in first!");
+    return;
   }
+    try {
+      // token should come from your login/auth context/localStorage
+      const token = localStorage.getItem("token") || "";
+      const res = await postPropertyData(formData, token);
+      alert("Property added successfully!");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    sessionStorage.setItem('propertyFormData', JSON.stringify(formData))
-    alert('Data saved to session storage!')
-  }
+      console.log("Saved Property:", res.data);
 
+      // reset form
+      setFormData({
+        apartmentType: "",
+        apartmentName: "",
+        bhkType: "",
+        noOfFloors: "",
+        propertyAge: "",
+        facing: "",
+        buildUpArea: "",
+        city: "",
+      });
+    } catch (error) {
+  console.error("Error adding property:", JSON.stringify(error, null, 2));
+}
+
+  };
+
+  
   return (
     <>
     <Navbar transparent={false} />
@@ -166,6 +189,19 @@ export default function PropertyListing() {
                           value={formData.buildUpArea}
                           onChange={handleChange}
                         />
+                      </div>
+                      
+                      <div className="form-group col-md-6 position-relative">
+                        <label>City *</label>
+                        <select className="form-control pr-5" name="city" value={formData.city} onChange={handleChange}>
+                          <option value="">Select City</option>
+                          <option value="Mumbai">Mumbai</option>
+                          <option value="Pune">Pune</option>
+                          <option value="Nashik">Nashik</option>
+                          <option value="Banglore">Banglore</option>
+                          <option value="Hydrabad">Hydrabad</option>
+                        </select>
+                        <i className="fa fa-chevron-down position-absolute" style={{ top: '60%', right: '25px', transform: 'translateY(-50%)', pointerEvents: 'none', color: '#999' }}></i>
                       </div>
 
                     </div>

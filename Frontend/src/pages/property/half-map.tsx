@@ -6,10 +6,10 @@ import Select from 'react-select';
 import Slider from 'rc-slider';
 import '../../../node_modules/rc-slider/assets/index.css'
 
-import FullNavbar from '../../components/navbar/full-navbar'
+import Navbar from '../../components/navbar/navbar'
 import ListPropertyFour from '../../components/list-property-four'
 import { propertyData } from '../../data/data'
-import ScrollToTop from '../../components/scroll-to-top';
+
 
 export default function HalfMap() {
     const [range, setRange] = useState<number[]>([20, 80]); 
@@ -56,7 +56,7 @@ export default function HalfMap() {
 
   return (
     <>
-    <FullNavbar transparent={false}/>   
+    <Navbar transparent={false}/>   
     <div>
         <div className="home-map-banner full-wrapious d-md-none">
             <div style={{ height: '600px', width: '100%' }}>

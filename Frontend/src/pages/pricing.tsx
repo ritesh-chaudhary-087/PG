@@ -26,7 +26,7 @@ export default function Pricing() {
                 <div className="row justify-content-center">
                     <div className="col-lg-7 col-md-10 text-center">
                         <div className="sec-heading center">
-                            <h2>See our packages</h2>
+                            <h2>Plan for Customers</h2>
                             <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores</p>
                         </div>
                     </div>
@@ -40,7 +40,7 @@ export default function Pricing() {
                 <div className="row justify-content-center">
                     <div className="col-lg-7 col-md-10 text-center">
                         <div className="sec-heading center">
-                            <h2>See our packages</h2>
+                            <h2>Plan for Owners</h2>
                             <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores</p>
                         </div>
                     </div>

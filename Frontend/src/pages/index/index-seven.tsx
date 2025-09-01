@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import NavLight from '../../components/navbar/nav-light'
+import Navbar from '../../components/navbar/navbar'
 import ExplorePropertyTwo from '../../components/explore-property-two'
 import GridPropertyOne from '../../components/grid-property-one'
 import TeamOne from '../../components/team-one'
@@ -17,7 +17,7 @@ import bg from '../../assets/img/banner-7.jpg'
 export default function IndexSeven() {
   return (
     <>
-        <NavLight/>
+        <Navbar transparent={false}/>
 
         <div className="image-cover hero-banner" style={{backgroundImage:`url(${bg})`, backgroundRepeat:'no-repeat'}} data-overlay="6">
             <div className="container">

@@ -16,7 +16,8 @@ import Video from './pages/index/video';
 import Map from './pages/index/map';
 import ListLayoutOne from './pages/property/list-layout-one';
 import ListLayoutTwo from './pages/property/list-layout-two';
-import ScrollToTop from './components/scroll-to-top';
+import useLenis from './pages/hooks/useLenis';
+import ScrollToTop from './pages/hooks/ScrollToTop';
 import ListLayoutThree from './pages/property/list-layout-three';
 import ListLayoutWithMap from './pages/property/list-layout-with-map';
 import ListLayoutFull from './pages/property/list-layout-full';
@@ -74,6 +75,7 @@ import RentalDetails from './pages/PropertyListing/RentalDetails';
 import ForgotPasswordModal from './components/navbar/ForgotPasswordModal';
 
 function App() {
+  useLenis();
   const [activeSection, setActiveSection] = useState("privacy"); 
 
   const sections = [
@@ -83,7 +85,9 @@ function App() {
 
   return (
     <>
+    <ScrollToTop /> {/* ✅ Must be inside BrowserRouter */}
       <Routes>
+        
         <Route path='/' element={<Index/>}/>
         <Route path='/home-2' element={<IndexTwo/>}/>
         <Route path='/home-3' element={<IndexThree/>}/>
@@ -166,6 +170,7 @@ function App() {
         <Route path="Amenities" element={<Amenities/>}/>
         <Route path="Gallery" element={<Gallery/>}/>
         <Route path="Schedule" element={<Schedule/>}/>
+
       </Routes>
       <ScrollToTop/>
     </>

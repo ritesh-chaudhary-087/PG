@@ -6,7 +6,7 @@ import FooterTop from '../../components/footer-top';
 import Footer from '../../components/footer';
 
 import { blogData } from '../../data/data'
-import ScrollToTop from '../../components/scroll-to-top';
+import ScrollToTop from '../hooks/ScrollToTop';
 
 interface BlogData {
     id: number;

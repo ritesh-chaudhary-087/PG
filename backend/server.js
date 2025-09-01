@@ -26,11 +26,12 @@ app.use("/api/auth", authRoutes);
 app.use("/api/properties", propertyRoutes);
 app.use("/api/inquiries", inquiryRoutes);
 app.use("/api/reviews", reviewRoutes);
-app.use("/api/localities", localityRoutes);
+app.use("/api/locality", localityRoutes);
 app.use("/api/rental-details", rentalDetailsRoutes);
 app.use("/api/amenities", amenitiesRoutes);
 app.use("/api/gallery", galleryRoutes);
 app.use("/api/schedule", scheduleRoutes);
+
 
 // Static folder for images (only if not using Cloudinary)
 app.use("/uploads", express.static("uploads"));

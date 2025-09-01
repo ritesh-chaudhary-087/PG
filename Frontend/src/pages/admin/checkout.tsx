@@ -209,11 +209,11 @@ export default function Checkout() {
                         </div>
                     </div>
                     
-                    <div className="col-lg-12 col-md-12 col-sm-12">
+                    {/* <div className="col-lg-12 col-md-12 col-sm-12">
                         <div className="alert bg-danger text-light text-center" role="alert">
                             Have You Coupon? <Link to="#" className="text-warning" onClick={()=>setShow2(!show2)}>Click Here</Link>
                         </div>
-                    </div>
+                    </div> */}
                     
                     <div className="col-lg-12 col-md-12 col-sm-12 mb-2">
                         <div id="coupon-frm" className={`collapse ${show2 ? 'show' : ''}`}>

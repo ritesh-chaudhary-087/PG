@@ -6,7 +6,7 @@ import FooterTop from '../components/footer-top'
 import Footer from '../components/footer'
 
 import error from '../assets/img/404.png'
-import ScrollToTop from '../components/scroll-to-top'
+import ScrollToTop from '../pages/hooks/ScrollToTop';
 
 export default function Error() {
   return (

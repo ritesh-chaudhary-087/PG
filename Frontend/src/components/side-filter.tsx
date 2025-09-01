@@ -34,7 +34,7 @@ export default function SideFilter({show, setShow}:{show:any, setShow:any}) {
                     </div>
                 </div>
                 
-                <div className="position-relative d-flex flex-xl-row flex-column align-items-center">
+                {/* <div className="position-relative d-flex flex-xl-row flex-column align-items-center">
                     <div className="verifyd-prt-block flex-fill full-width my-1 me-1">
                         <div className="d-flex align-items-center justify-content-center justify-content-between border rounded-3 px-2 py-3">
                             <div className="eliok-cliops d-flex align-items-center">
@@ -69,7 +69,7 @@ export default function SideFilter({show, setShow}:{show:any, setShow:any}) {
                         </div>
                         
                     </div>
-                </div>
+                </div> */}
                 
                 <div className="filter_wraps">
                     <div className="single_search_boxed">
@@ -400,7 +400,7 @@ export default function SideFilter({show, setShow}:{show:any, setShow:any}) {
                 </div>
                 
                 <div className="form-group filter_button">
-                    <button type="submit" className="btn btn btn-primary rounded full-width">22 Results Show</button>
+                    <button type="submit" className="btn btn btn-primary rounded full-width">Results Show</button>
                 </div>
             </div>							
         </div>

@@ -6,7 +6,7 @@ import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import Slider from 'rc-slider';
 import '../../../node_modules/rc-slider/assets/index.css'
 
-import FullNavbar from '../../components/navbar/full-navbar'
+import Navbar from '../../components/navbar/navbar'
 import ListPropertyTwo from '../../components/list-property-two';
 
 import { propertyData } from '../../data/data'
@@ -40,7 +40,7 @@ export default function HalfMapTwo() {
 
   return (
     <>
-    <FullNavbar transparent={false}/>   
+    <Navbar transparent={false}/>   
     <div className="">
         <div className="home-map-banner full-wrapious d-md-none">
             <div style={{ height: '600px', width: '100%' }}>

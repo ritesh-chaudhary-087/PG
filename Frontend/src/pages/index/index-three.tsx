@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import bg from '../../assets/img/bg-2.jpg'
 
-import NavLight from '../../components/navbar/nav-light'
+import Navbar from '../../components/navbar/navbar'
 import BestLoctionOne from '../../components/best-loction-one';
 import GridPropertyOne from '../../components/grid-property-one';
 import HowItsWork from '../../components/how-its-work';
@@ -17,7 +17,7 @@ export default function IndexThree() {
 
   return (
     <>
-        <NavLight/>
+        <Navbar transparent={false}/>
 
         <div className="image-cover hero-banner" style={{backgroundImage:`url(${bg})`, backgroundRepeat:'no-repeat'}} data-overlay="6">
             <div className="container">
