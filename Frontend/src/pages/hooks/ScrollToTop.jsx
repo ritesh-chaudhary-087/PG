@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-export default function ScrollToTop() {
+export default function ScrollToTop({ lenis }) {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [pathname]);
+    if (lenis?.current) {
+      lenis.current.scrollTo(0, { immediate: false });
+    }
+  }, [pathname, lenis]);
 
-  return null; // this component doesn't render anything
+  return null;
 }

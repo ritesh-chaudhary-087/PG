@@ -28,7 +28,7 @@ export default function Error() {
     </section>
     <FooterTop bg="theme-bg"/>
     <Footer/>
-    <ScrollToTop/>
+ 
     </>
   )
 }

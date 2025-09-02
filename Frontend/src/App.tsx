@@ -16,8 +16,7 @@ import Video from './pages/index/video';
 import Map from './pages/index/map';
 import ListLayoutOne from './pages/property/list-layout-one';
 import ListLayoutTwo from './pages/property/list-layout-two';
-import useLenis from './pages/hooks/useLenis';
-import ScrollToTop from './pages/hooks/ScrollToTop';
+
 import ListLayoutThree from './pages/property/list-layout-three';
 import ListLayoutWithMap from './pages/property/list-layout-with-map';
 import ListLayoutFull from './pages/property/list-layout-full';
@@ -72,7 +71,9 @@ import Schedule from './pages/PropertyListing/Schedule';
 import PropertyListing from './pages/PropertyListing/PropertyListing';
 import LocalityDetails from './pages/PropertyListing/LocalityDetails';
 import RentalDetails from './pages/PropertyListing/RentalDetails';
-import ForgotPasswordModal from './components/navbar/ForgotPasswordModal';
+import useLenis from '../src/pages/hooks/useLenis';
+import ScrollToTop from '../src/pages/hooks/ScrollToTop';
+import Lenis from '@studio-freight/lenis';
 
 function App() {
   useLenis();
@@ -85,7 +86,7 @@ function App() {
 
   return (
     <>
-    <ScrollToTop /> {/* ✅ Must be inside BrowserRouter */}
+    <ScrollToTop lenis={Lenis} /> {/* ✅ Must be inside BrowserRouter */}
       <Routes>
         
         <Route path='/' element={<Index/>}/>
@@ -172,7 +173,7 @@ function App() {
         <Route path="Schedule" element={<Schedule/>}/>
 
       </Routes>
-      <ScrollToTop/>
+      
     </>
   );
 }
