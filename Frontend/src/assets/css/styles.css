@@ -40,6 +40,25 @@
 ------------------------------------*/
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap');
 
+
+html,
+body {
+  height: auto;
+  overflow: hidden; /* ✅ Lenis controls scrolling */
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important; /* prevent browser smooth */
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none; /* smoother iframes scrolling */
+}
+
+
 /*------------------------------------
 	Preloader
 ------------------------------------*/
@@ -3440,8 +3459,17 @@ nav a {
 
 .header {
     background: #fff;
-    position: relative;
     padding: 1rem 0;
+     position: fixed;       /* always fixed */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+
+  /* Smooth GPU rendering */
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .header-top {

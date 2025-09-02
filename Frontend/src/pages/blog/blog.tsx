@@ -91,7 +91,7 @@ export default function Blog() {
         <FooterTop bg="theme-bg"/>
         <Footer/>
 
-        <ScrollToTop/>
+       
     </>
   )
 }

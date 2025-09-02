@@ -1,1 +1,17 @@
 
+html,
+body {
+  height: auto;
+  overflow: hidden; /* ✅ Lenis controls scrolling */
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important; /* prevent browser smooth */
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none; /* smoother iframes scrolling */
+}

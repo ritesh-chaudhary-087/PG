@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import Lenis from "@studio-freight/lenis";
+import { useRef } from "react";
 
 import { FiChevronDown } from "react-icons/fi";
 import { TiSocialGooglePlus, TiSocialFacebook } from "react-icons/ti";
@@ -147,26 +149,35 @@ export default function Navbar({ transparent }: { transparent: any }) {
     navigate("/login");
   };
 
-  // ✅ Scroll + resize
-  useEffect(() => {
-    window.scrollTo(0, 0);
+ // ✅ Smooth scrolling with Lenis + navbar state
+useEffect(() => {
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  });
 
-    const handlerScroll = () => {
-      setScroll(window.scrollY > 50);
-    };
+  function raf(time: number) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
 
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
+  // listen to scroll event
+  lenis.on("scroll", ({ scroll }: { scroll: number }) => {
+    setScroll(scroll > 50);
+  });
 
-    window.addEventListener("scroll", handlerScroll);
-    window.addEventListener("resize", handleResize);
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+  window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("scroll", handlerScroll);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [windowWidth]);
+  return () => {
+    lenis.destroy();
+    window.removeEventListener("resize", handleResize);
+  };
+}, []);
+
 
 
   return (
